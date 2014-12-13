@@ -13,7 +13,7 @@ namespace SimpleBlog.Controllers
 
         public ActionResult Index()
         {
-            return Content("Hello World!");
+            return View();
         }
 
     }
