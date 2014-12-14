@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using SimpleBlog.ViewModels;
 
 namespace SimpleBlog.Controllers
@@ -12,24 +13,36 @@ namespace SimpleBlog.Controllers
         //
         // GET: /Auth/
 
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+           return RedirectToRoute("home");
+        }
+
         public ActionResult Login()
         {
-            return View();
+            return View(new AuthLogin { 
+            });
         }
 
         [HttpPost]
-        public ActionResult Login(AuthLogin form)
+        public ActionResult Login(AuthLogin form,string returnUrl)
         {
             if(!ModelState.IsValid)
             return View(form);
 
-            if (form.Username != "serafeim")
-            {
-                ModelState.AddModelError("Username", "username is not cool");
-                return View(form);
-            }
+            FormsAuthentication.SetAuthCookie(form.Username, true);
 
-            return Content("form is valid");
+           
+            if (!string.IsNullOrWhiteSpace(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToRoute("home");
+            }
+            //return Content("hi");
         }
     }
 }

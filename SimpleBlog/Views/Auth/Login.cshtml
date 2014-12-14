@@ -4,16 +4,16 @@
     }   
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(FormMethod.Post))
 { 
     @Html.ValidationSummary()
 <div>
-    @Html.LabelFor(x=>x.Username)
-    @Html.EditorFor(x=>x.Username)
+    @Html.LabelFor(x => x.Username)
+    @Html.EditorFor(x => x.Username)
 </div>
     <div>
-        @Html.LabelFor(x=>x.Password)
-        @Html.EditorFor(x=>x.Password)
+        @Html.LabelFor(x => x.Password)
+        @Html.EditorFor(x => x.Password)
     </div>
     <div>
         <input type="submit" value="Login" />
