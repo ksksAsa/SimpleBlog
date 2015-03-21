@@ -23,7 +23,7 @@
         { 
         <p>Welcome @User.Identity.Name</p>
             <a href="@Url.RouteUrl("logout")">Logout</a>
-            
+          
             if (User.IsInRole("admin"))
             { 
             <a href="@Url.Action("index", "Posts", new { area = "admin" })">View Posts</a>

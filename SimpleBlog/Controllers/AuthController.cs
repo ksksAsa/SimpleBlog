@@ -47,13 +47,11 @@ namespace SimpleBlog.Controllers
 
            
             if (!string.IsNullOrWhiteSpace(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToRoute("home");
-            }
+                    return Redirect(returnUrl);
+            
+            
+           return RedirectToRoute("home");
+            
             //return Content("hi");
         }
     }

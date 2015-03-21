@@ -1,20 +1,32 @@
-﻿namespace SimpleBlog.Infrastructure
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Web.Mvc;
+namespace SimpleBlog.Infrastructure
 {
     public class RoleProvider:System.Web.Security.RoleProvider
     {
 
         public override string[] GetRolesForUser(string username)
         {
-            if (username == "serafeim")
-            {
-                return new string[] { "admin" };
-            }
-            else
-            {
-                return new string[] { };
-            }
+            //if(username=="jim")
+              //  return new[] {"admin"};
+            //return new string[] { };
+         //  try
+          //  {
+            //int countRoles = Auth.User.Roles.Count;
+           // Debug.WriteLine("The count of roles is " +countRoles);
+                return  Auth.User.Roles.Select(role => role.Name).ToArray();
+           // }
+           // catch {
+               // return new[] { "admin" };
+            //}
+           // Array arr = Auth.User.Roles.Select(role=>role.Name).ToArray();
+            //System.Diagnostics.Debug.WriteLine(arr);
+            //return new string[] { };
         }
-        
+
+
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
         {
             throw new System.NotImplementedException();
