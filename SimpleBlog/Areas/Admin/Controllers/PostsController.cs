@@ -75,9 +75,11 @@ namespace SimpleBlog.Areas.Admin.Controllers
                 IsChecked=post.Tags.Contains(tag)
                 }).ToList()
             });
+
+            Database.Session.Update(post);
         }
 
-        [HttpPost,ValidateAntiForgeryToken]
+        [HttpPost,ValidateAntiForgeryToken,ValidateInput(false)]
         public ActionResult Form(PostsForm form)
         {
             if (form.PostId==null)
