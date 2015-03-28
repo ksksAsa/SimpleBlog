@@ -39,7 +39,7 @@ namespace SimpleBlog.Areas.Admin.Controllers
                 .ToList();
 
             return View(new PostsIndex { 
-            Posts = new PageData<Post>(currentPostPage,totalPostsCount,page,PostsPerPage)
+            Posts = new PagedData<Post>(currentPostPage,totalPostsCount,page,PostsPerPage)
             });
         }
 
@@ -62,6 +62,9 @@ namespace SimpleBlog.Areas.Admin.Controllers
             if (post == null)
                 return HttpNotFound();
 
+
+
+
             return View("form", new PostsForm
             {
                 IsNew = false,
@@ -76,16 +79,13 @@ namespace SimpleBlog.Areas.Admin.Controllers
                 }).ToList()
             });
 
-            Database.Session.Update(post);
+           
         }
 
         [HttpPost,ValidateAntiForgeryToken,ValidateInput(false)]
         public ActionResult Form(PostsForm form)
         {
-            if (form.PostId==null)
-            {
-                form.IsNew = true;
-            }
+            form.IsNew = form.PostId == null;
 
             if (!ModelState.IsValid)
                 return View(form);

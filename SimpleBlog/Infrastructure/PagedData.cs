@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SimpleBlog.Infrastructure
 {
-    public class PageData<T>:IEnumerable<T>
+    public class PagedData<T>:IEnumerable<T>
     {
         private readonly IEnumerable<T> _currentItems;
 
@@ -35,7 +35,7 @@ namespace SimpleBlog.Infrastructure
             }
         }
 
-        public PageData(IEnumerable<T> currentItems, int totalCount, int page, int perPage)
+        public PagedData(IEnumerable<T> currentItems, int totalCount, int page, int perPage)
         {
             _currentItems = currentItems;
             TotalCount = totalCount;
