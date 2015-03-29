@@ -40,6 +40,10 @@ namespace SimpleBlog
 
             routes.MapRoute(
                 "Sidebar", "", new { controller = "Layout", action = "Sidebar" }, namespaces);
+
+            routes.MapRoute("Error500", "errors/500", new { controller = "Errors", action = "Error" }, namespaces);
+            
+            routes.MapRoute("Error404", "errors/404", new { controller = "Errors", action = "NotFound" }, namespaces);
         }
     }
 }
